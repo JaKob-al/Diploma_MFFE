@@ -10,10 +10,10 @@ akord = okno .* audioread(imeDatoteke);
 
 spekter = abs(fft(akord))/sf;
 spekter = spekter(1:round(maxFrekvenca/(2^(-50/1200))));
-[pks, locs] = findpeaks(spekter, 'MinPeakHeight', db2mag(-65));
+[pks, locs] = findpeaks(spekter, 'MinPeakHeight', db2mag(-68));
 spekter(:) = 0;
 spekter(locs) = pks;
-plot(spekter)
+% plot(spekter)
 akordIme = "";
 
 akordTonskiSpekter = zeros(1, length(tonskiSpektri));
@@ -26,31 +26,29 @@ end
 
 % locs = find(akordTonskiSpekter>0);
 % pks = akordTonskiSpekter(locs);
-s = stem(akordTonskiSpekter);
-row = dataTipTextRow('Ton',pitchNames);
-s.DataTipTemplate.DataTipRows(end+1) = row;
-yline(db2mag(-65))
+% s = stem(akordTonskiSpekter);
+% row = dataTipTextRow('Ton',pitchNames);
+% s.DataTipTemplate.DataTipRows(end+1) = row;
+% yline(db2mag(-65))
 
 while mag2db(max(akordTonskiSpekter)) > -55
-    
-%     figure;
-%     tiledlayout(3,1)
-%     nexttile;
-%     s = stem(akordTonskiSpekter);
-%     row = dataTipTextRow('Ton',pitchNames);
-%     s.DataTipTemplate.DataTipRows(end+1) = row;
-
-    locs = find(akordTonskiSpekter>0);  % LOKACIJE PEAKOV AKORDA
-    pks = akordTonskiSpekter(locs);     % AMPLITUDE PEAKOV AKORDA
-    iOsnovniTon = locs(1);              % TRENUTNI TON
+    % LOKACIJE PEAKOV AKORDA
+    locs = find(akordTonskiSpekter>0);
+    % AMPLITUDE PEAKOV AKORDA
+    pks = akordTonskiSpekter(locs);  
+    % TRENUTNI TON - 1. ton v akordu
+    iOsnovniTon = locs(1);              
     akordIme = append(akordIme, pitchNames(iOsnovniTon));
     faktor = pks(1) / tonskiSpektri(iOsnovniTon, iOsnovniTon);
     
-    % Primerjaj z spektrom osnovnega tona
+    % Indeksi vrhov v spektru posameznega tona
     locsTon = find(tonskiSpektri(iOsnovniTon, :) > 0);
-    pksTon = faktor * tonskiSpektri(iOsnovniTon, locsTon);  % normaliziran
+    % Normaliziraj spekter trenutnega osnovnega tona
+    pksTon = faktor * tonskiSpektri(iOsnovniTon, locsTon);
+    % Poisci vrhove v akordu za primerjavo
     pksAkordTon = akordTonskiSpekter(locsTon);
     
+    % Primerjava 
     for i = 1:length(locsTon)
         if pksTon(i) >= pksAkordTon(i)
             if pksTon(i)/pksAkordTon(i)  <= 1.2
@@ -68,20 +66,6 @@ while mag2db(max(akordTonskiSpekter)) > -55
             end
         end
     end
-    
-    
-%     pks(1)= [];
-%     locs(1) = [];
-
-%     nexttile;
-%     s = stem(tonskiSpektri(iOsnovniTon, :));
-%     row = dataTipTextRow('Ton',pitchNames);
-%     s.DataTipTemplate.DataTipRows(end+1) = row;
-%     nexttile;
-    
-%     s = stem(akordTonskiSpekter);
-%     row = dataTipTextRow('Ton',pitchNames);
-%     s.DataTipTemplate.DataTipRows(end+1) = row;
     
 end
 rezultat = char(akordIme);

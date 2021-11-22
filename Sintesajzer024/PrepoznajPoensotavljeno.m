@@ -7,7 +7,7 @@ sf = 44100;
 okno = hann(sf);
 maxFrekvenca = frekvenceOsnovnihTonov(end);
 
-akord = okno .* audioread("G#2D#3G#3C4F#4C5.wav");
+akord = okno .* audioread("D4F4A4C#5.wav");
 
 spekter = abs(fft(akord))/sf;
 spekter = spekter(1:round(maxFrekvenca/(2^(-50/1200))));
@@ -39,9 +39,10 @@ while mag2db(max(akordTonskiSpekter)) > -45
     figure;
     tiledlayout(3,1)
     nexttile;
-    s = stem(akordTonskiSpekter);
-    row = dataTipTextRow('Ton',pitchNames);
+    s = stem(25:61, akordTonskiSpekter(25:61));
+    row = dataTipTextRow('Ton',pitchNames(25:61));
     s.DataTipTemplate.DataTipRows(end+1) = row;
+%     xlabel("Zaporedni ton")
 
     locs = find(akordTonskiSpekter>0);  % LOKACIJE PEAKOV AKORDA
     pks = akordTonskiSpekter(locs);     % AMPLITUDE PEAKOV AKORDA
@@ -74,13 +75,15 @@ while mag2db(max(akordTonskiSpekter)) > -45
     
    
     nexttile;
-    s = stem(tonskiSpektri(iOsnovniTon, :));
-    row = dataTipTextRow('Ton',pitchNames);
+    s = stem(25:61, tonskiSpektri(iOsnovniTon, 25:61)*faktor);
+    row = dataTipTextRow('Ton',pitchNames(25:61));
     s.DataTipTemplate.DataTipRows(end+1) = row;
+%     xlabel("Zaporedni ton")
     nexttile;
     
-    s = stem(akordTonskiSpekter);
-    row = dataTipTextRow('Ton',pitchNames);
+    s = stem(25:61, akordTonskiSpekter(25:61));
+    row = dataTipTextRow('Ton',pitchNames(25:61));
     s.DataTipTemplate.DataTipRows(end+1) = row;
+%     xlabel("Zaporedni ton")
     
 end
