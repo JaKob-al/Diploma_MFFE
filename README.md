@@ -1,10 +1,39 @@
-# Multiple Fundamental-Frequency Recognition Algorithm
-Bachelor thesis algorithm (University of Ljubljana, 2021)
+# Multiple Fundamental-Frequency Recognition in a Chord  
+**Bachelor thesis algorithm** – University of Ljubljana, 2021  
+Jakob Kobal – [jakob.kobal@gmail.com](mailto:jakob.kobal@gmail.com)
 
-Accuracy: 98–75 % on real acoustic recordings
+Iterative, model-based MATLAB algorithm for estimating the individual fundamental frequencies in a single-instrument polyphonic chord (no machine learning).
 
-Main logic file: prepoznajAkord.m 
+### Accuracy on real recordings (self-recorded, controlled environment)
+- Accordion: **98 %** (49/50 chords correct)  
+- Digital organ: **94 %**  
+- Digital piano: **75 %**
 
-It appears in all three test cases (3 different instruments): "Harmonika", "Sintesajzer001", and "Sintesajzer024".
+### How it works (high-level)
+1. Build an instrument-specific spectral “alphabet” from isolated single notes (FFT → harmonic amplitudes).  
+2. Take a chord recording → FFT → power spectrum.  
+3. Iteratively:  
+   - Find the lowest remaining peak → match to the fundamental in the model.  
+   - Subtract that note’s entire harmonic series (scaled and shifted for slight inharmonicity).  
+   - Repeat until no significant peaks remain.
 
+Fast (milliseconds per chord), fully deterministic, and surprisingly robust on real acoustic instruments.
 
+### Folder structure
+- `/Demonstracije` – examples used for simple demonstrations in the thesis 
+- `/Funkcije` – core functions  
+- `/Harmonika`, `/Sintesaizer001`, `/Sintesaizer024` – instrument models with recordings  
+- `prepoznajAkord.m` – main script (in each of the instrument models)
+
+### Full thesis (66 pages, English summary included)
+https://repozitorij.uni-lj.si/IzpisGradiva.php?id=134227&lang=eng
+
+### Possible extensions
+- Real-time Python port + PyAudio  
+- Noise-robust preprocessing  
+- Multi-instrument models  
+- Larger datasets + room reverb  
+- Direct comparison with human listeners  
+- Integration into automatic transcription systems
+
+Feel free to use or modify the code. Issues and pull requests welcome!
