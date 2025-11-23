@@ -22,6 +22,7 @@ For chord recognition:
 This subtractive, model-based approach is deterministic and computationally efficient, processing chords in milliseconds without machine learning.
 
 ### Example chords used in testing
+|----------|--------|-------------------|------------|
 | F#3B4     | G5A5D6E6   | D#4E4F4C#5   | G4B4C5D#5F5  |
 | C#4G4     | A#4B4D5F5  | D#4G4G#4C5   | A2E3C4E4A4   |
 | C4C5      | C2E2G2C3   | D2A2C#3E3    | C3E3B3D4G4   |
