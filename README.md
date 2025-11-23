@@ -10,7 +10,7 @@ Iterative, model-based MATLAB algorithm for estimating the individual fundamenta
 - `/Harmonika`, `/Sintesajzer001`, `/Sintesajzer024` – instrument models with recordings  
 - `prepoznajAkord.m` – main script (in each of the instrument models)
 
-### Full thesis (66 pages, English summary included)
+### Full thesis (66 pages)
 https://repozitorij.uni-lj.si/IzpisGradiva.php?id=134227&lang=eng
 
 ### Accuracy on real recordings (self-recorded, controlled environment)
