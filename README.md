@@ -5,9 +5,9 @@ Jakob Kobal – [jakob.kobal@gmail.com](mailto:jakob.kobal@gmail.com)
 Iterative, model-based MATLAB algorithm for estimating the individual fundamental frequencies in a single-instrument polyphonic chord (no machine learning).
 
 ### Accuracy on real recordings (self-recorded, controlled environment)
-•	Digital organ: 100 chords, 94% full accuracy
-•	Digital piano: 100 chords, 75% full accuracy 
-•	Accordion: 50 chords across two octaves, 98% accuracy (49/50 correct).
+- Digital organ: 100 chords, 94% full accuracy
+- Digital piano: 100 chords, 75% full accuracy
+- Accordion: 50 chords across two octaves, 98% accuracy (49/50 correct).
 
 ### How it works (high-level)
 1. Build an instrument-specific spectral “alphabet” from isolated single notes (FFT → harmonic amplitudes).  
