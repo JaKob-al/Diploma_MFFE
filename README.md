@@ -19,6 +19,24 @@ Iterative, model-based MATLAB algorithm for estimating the individual fundamenta
 
 Fast (milliseconds per chord), fully deterministic, and surprisingly robust on real acoustic instruments.
 
+### Example chords used in testing
+| F#3B4     | G5A5D6E6   | D#4E4F4C#5   | G4B4C5D#5F5  |
+|-----------|------------|--------------|--------------|
+| C#4G4     | A#4B4D5F5  | D#4G4G#4C5   | A2E3C4E4A4   |
+| C4C5      | C2E2G2C3   | D2A2C#3E3    | C3E3B3D4G4   |
+| G3B4      | D#5G5A#5D6 | D3G#3A#3D#4  | E3E4A#4C#5E5 |
+| ... (full list in thesis) |
+
+### Errors on digital organ test set (6 out of 100)
+| Recognized       | Actual            | Difference |
+|------------------|-------------------|------------|
+| E2B2G3A3D4G4     | E2B2G3A3B3D4G4    | –1 tone    |
+| G#2D#3G3C4       | G#2D#3G3C4F4      | –1         |
+| A#3C#4E4G4A#4A#5 | A#3C#4E4G4A#4     | +1         |
+| B3F#4B4B5        | B3F#4B4           | +1         |
+| G#2D#3G#3C4F#4G#4C5 | G#2D#3G#3C4F#4C5 | –1      |
+| G3D4G4G5         | G3D4G4            | +1         |
+
 ### Folder structure
 - `/Demonstracije` – examples used for simple demonstrations in the thesis 
 - `/Funkcije` – core functions  
