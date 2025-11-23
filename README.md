@@ -10,22 +10,22 @@ Iterative, model-based MATLAB algorithm for estimating the individual fundamenta
 - Accordion: 50 chords across two octaves, 98% accuracy (49/50 correct).
 
 ### How it works (high-level)
-1. Build an instrument-specific spectral “alphabet” from isolated single notes (FFT → harmonic amplitudes).  
-2. Take a chord recording → FFT → power spectrum.  
-3. Iteratively:  
-   - Find the lowest remaining peak → match to the fundamental in the model.  
-   - Subtract that note’s entire harmonic series (scaled and shifted for slight inharmonicity).  
-   - Repeat until no significant peaks remain.
+The algorithm begins by building a discretized spectral model for a single instrument. This involves recording an "alphabet" of individual pitches (isolated notes) and applying the Fast Fourier Transform (FFT) to capture their harmonic profiles—frequencies and relative amplitudes—accounting for deviations from ideal harmonicity in real instruments.
 
-Fast (milliseconds per chord), fully deterministic, and surprisingly robust on real acoustic instruments.
+For chord recognition:
+
+1.	The chord audio is windowed (e.g., Hann window) to reduce spectral leakage
+2.	FFT generates the power spectrum.
+3.	Starting with the lowest prominent peak (presumed to be the lowest fundamental), the algorithm matches it to the instrument model and subtracts its corresponding harmonics from the chord spectrum.
+4.	It iteratively repeats this for the next lowest remaining peak, removing associated harmonics each time, until no significant peaks are left. Additional steps handle practical complexities: peak thresholding, normalizing harmonic values, adjustments for inharmonicity or slight frequency deviations.
+
+This subtractive, model-based approach is deterministic and computationally efficient, processing chords in milliseconds without machine learning.
 
 ### Example chords used in testing
 | F#3B4     | G5A5D6E6   | D#4E4F4C#5   | G4B4C5D#5F5  |
-|-----------|------------|--------------|--------------|
 | C#4G4     | A#4B4D5F5  | D#4G4G#4C5   | A2E3C4E4A4   |
 | C4C5      | C2E2G2C3   | D2A2C#3E3    | C3E3B3D4G4   |
 | G3B4      | D#5G5A#5D6 | D3G#3A#3D#4  | E3E4A#4C#5E5 |
-| ... (full list in thesis) |
 
 ### Errors on digital organ test set (6 out of 100)
 | Recognized       | Actual            | Difference |
