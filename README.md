@@ -4,6 +4,15 @@ Jakob Kobal – [jakob.kobal@gmail.com](mailto:jakob.kobal@gmail.com)
 
 Iterative, model-based MATLAB algorithm for estimating the individual fundamental frequencies in a single-instrument polyphonic chord (no machine learning).
 
+### Folder structure
+- `/Demonstracije` – examples used for simple demonstrations in the thesis 
+- `/Funkcije` – core functions  
+- `/Harmonika`, `/Sintesajzer001`, `/Sintesajzer024` – instrument models with recordings  
+- `prepoznajAkord.m` – main script (in each of the instrument models)
+
+### Full thesis (66 pages, English summary included)
+https://repozitorij.uni-lj.si/IzpisGradiva.php?id=134227&lang=eng
+
 ### Accuracy on real recordings (self-recorded, controlled environment)
 - Digital organ: 100 chords, 94% full accuracy
 - Digital piano: 100 chords, 75% full accuracy
@@ -34,15 +43,6 @@ F♯3B4 · G5A5D6E6 · D♯4E4F4C♯5 · G4B4C5D♯5F5 · C♯4G4 · A♯4B4D5F5
 | B3F#4B4B5        | B3F#4B4           | +1         |
 | G#2D#3G#3C4F#4G#4C5 | G#2D#3G#3C4F#4C5 | –1      |
 | G3D4G4G5         | G3D4G4            | +1         |
-
-### Folder structure
-- `/Demonstracije` – examples used for simple demonstrations in the thesis 
-- `/Funkcije` – core functions  
-- `/Harmonika`, `/Sintesajzer001`, `/Sintesajzer024` – instrument models with recordings  
-- `prepoznajAkord.m` – main script (in each of the instrument models)
-
-### Full thesis (66 pages, English summary included)
-https://repozitorij.uni-lj.si/IzpisGradiva.php?id=134227&lang=eng
 
 ### Some Improvements & Possible Future Ideas
 - Noise-proof → add denoising techniques
