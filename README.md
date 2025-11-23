@@ -28,12 +28,11 @@ Fast (milliseconds per chord), fully deterministic, and surprisingly robust on r
 ### Full thesis (66 pages, English summary included)
 https://repozitorij.uni-lj.si/IzpisGradiva.php?id=134227&lang=eng
 
-### Possible extensions
-- Real-time Python port + PyAudio  
-- Noise-robust preprocessing  
-- Multi-instrument models  
-- Larger datasets + room reverb  
-- Direct comparison with human listeners  
-- Integration into automatic transcription systems
-
-Feel free to use or modify the code. Issues and pull requests welcome!
+### Some Improvements & Possible Future Ideas
+- Noise-proof → add denoising techniques
+- Testing on a bigger dataset and on polyphonic acoustic instruments → 1,000 chords + reverb + room noise.
+- Use of AI, data mining techniques → Build on algorithm's logic to get better accuracies 
+- Multi-instrument → one model per instrument 
+- Real-time → port to Python + PyAudio
+- Expand the algorithm application to real music automatic transcription
+- Explore parallels with the human perception
